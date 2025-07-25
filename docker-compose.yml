@@ -1,0 +1,41 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: illapel
+      POSTGRES_PASSWORD: illapel123
+      POSTGRES_DB: illapel
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: illapel
+      DB_PASSWORD: illapel123
+      DB_DATABASE: illapel
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend/uploads:/app/uploads
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"   # Usa 5173 si usas Vite, 3000 si usas react-scripts
+    environment:
+      - REACT_APP_API_URL=http://localhost:3000
+    # No necesita volumes, salvo que quieras desarrollo en caliente
+
+volumes:
+  db_data:

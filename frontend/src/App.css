@@ -1,0 +1,26 @@
+body {
+  background: #18181b;
+  color: #f3f3f3;
+}
+input, button, textarea {
+  color: inherit;
+}
+.card {
+  background: #23232c;
+  border-radius: 16px;
+  box-shadow: 0 6px 32px 0 #0005;
+  padding: 1.5rem 1.25rem;
+  margin-bottom: 2rem;
+}
+.result {
+  background: #27272a;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  margin-bottom: 0.3rem;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+.result:hover {
+  box-shadow: 0 4px 12px 0 #0007;
+  background: #262a37;
+}
